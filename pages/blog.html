@@ -11,6 +11,65 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="/assets/css/main.css" />
+	<style>
+		.sort-dropdown {
+			position: relative;
+			display: inline-block;
+			margin-bottom: 2em;
+		}
+		.sort-button {
+			background-color: #f5f6f7;
+			color: #3d4449;
+			padding: 12px 20px;
+			border: 1px solid #ddd;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			font-size: 0.9em;
+		}
+		.sort-button:after {
+			content: '';
+			border-left: 5px solid transparent;
+			border-right: 5px solid transparent;
+			border-top: 5px solid #3d4449;
+			margin-left: 5px;
+		}
+		.sort-options {
+			display: none;
+			position: absolute;
+			background-color: #fff;
+			min-width: 160px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+			z-index: 1;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			margin-top: 2px;
+		}
+		.sort-options div {
+			padding: 12px 20px;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+		.sort-options div:hover {
+			background-color: #f5f6f7;
+		}
+		.sort-options div.active {
+			color: #f56a6a;
+		}
+		.sort-options div.active:before {
+			content: '✓';
+			margin-right: 5px;
+		}
+		.sort-dropdown.active .sort-options {
+			display: block;
+		}
+		.blog-post {
+			display: none;
+		}
+	</style>
 </head>
 
 <body class="is-preload">
@@ -40,115 +99,142 @@
 						<h1>theLemonSqueeze</h1>
 					</header>
 
-					<!-- Featured Post -->
-					<hr class="major" />
-					<div class="row">
-						<div class="col-8 col-12-small">
-							<h2><a href="/pages/blog/1plus1.html">1plus1</a></h2>
-							<p>On Deserving Good Things</p>
-							<p class="date">June 7, 2025</p>
-							<p>I didn't get everything I wanted when I was a kid. I always thought that being told "no" was a universal experience, but after talking with friends, it seems like not being able to eat the foods I wanted to eat, and not being able to go to places I wanted to go was strangely unique. And I'm not saying that to feel sorry for myself. I'm not clinging to it on purpose. But for some reason, it's hard to shed. It sticks to the back of my thoughts like gum on a shoe...</p>
-						</div>
-						<div class="col-4 col-12-small">
-							<span class="image fit"><img src="/images/IMG_6244.jpg" alt="" /></span>
+					<div class="sort-dropdown">
+						<div class="sort-button">Sort by: <span id="current-sort">Date</span></div>
+						<div class="sort-options">
+							<div class="active" onclick="sortPosts('date', this)">Date</div>
+							<div onclick="sortPosts('popular', this)">Popularity</div>
 						</div>
 					</div>
 
-					<!-- Liquor Post -->
-					<hr class="major" />
-					<div class="row">
-						<div class="col-4 col-12-small">
-							<span class="image fit"><img src="/images/Dad.JPG" alt="" /></span>
+					<!-- Blog Posts Container -->
+					<div id="blog-posts">
+						<!-- 1plus1 Post -->
+						<div class="blog-post" data-date="2025-06-07" data-popular="3">
+							<hr class="major" />
+							<div class="row">
+								<div class="col-8 col-12-small">
+									<h2><a href="/pages/blog/1plus1.html">1plus1</a></h2>
+									<p>On Deserving Good Things</p>
+									<p class="date">June 7, 2025</p>
+									<p>I didn't get everything I wanted when I was a kid. I always thought that being told "no" was a universal experience, but after talking with friends, it seems like not being able to eat the foods I wanted to eat, and not being able to go to places I wanted to go was strangely unique. And I'm not saying that to feel sorry for myself. I'm not clinging to it on purpose. But for some reason, it's hard to shed. It sticks to the back of my thoughts like gum on a shoe...</p>
+								</div>
+								<div class="col-4 col-12-small">
+									<span class="image fit"><img src="/images/IMG_6244.jpg" alt="" /></span>
+								</div>
+							</div>
 						</div>
-						<div class="col-8 col-12-small">
-							<h2><a href="/pages/blog/liquor-sweat-bulletproof.html">Liquor, Sweat, and Bulletproof Glass</a></h2>
-							<p>Embracing Identity</p>
-							<p class="date">February 4, 2020</p>
-							<p>A mile east of where the 5 merges with the San Bernardino freeway is Duke's Sportsman Liquor store. Duke and Sunny, my middle aged parents from South Korea, owned the small liquor store in the city of Terrace for nearly a decade. Sitting on a stool behind the hanging rolls of scratchers, I watched my parents work. My dad, with his toes exposed in his velcro sandals, greeted customers while talking with the Budweiser courier about the day's shipment...</p>
-						</div>
-					</div>
 
-					<!-- Did you eat yet Post -->
-					<hr class="major" />
-					<div class="row">
-						<div class="col-8 col-12-small">
-							<h2><a href="/pages/blog/did-you-eat-yet.html">Did you eat yet?</a></h2>
-							<p>Agape(ἀγάπη) love</p>
-							<p class="date">February 5, 2020</p>
-							<p>"Why can't you be like white parents?" As a seventh grader who just spent the weekend at Jacob's house, I heard a constant flow of "I love you" and "I love you too" throughout the day. I bicycled back home just in time for my mom's signature spaghetti and meatballs, and I sat fiddling with my chopsticks until I asked, "Do you love me?" My mother stayed quiet until she said, "Don't ask me those kinds of questions"...</p>
+						<!-- Liquor Post -->
+						<div class="blog-post" data-date="2020-02-04" data-popular="1">
+							<hr class="major" />
+							<div class="row">
+								<div class="col-4 col-12-small">
+									<span class="image fit"><img src="/images/Dad.JPG" alt="" /></span>
+								</div>
+								<div class="col-8 col-12-small">
+									<h2><a href="/pages/blog/liquor-sweat-bulletproof.html">Liquor, Sweat, and Bulletproof Glass</a></h2>
+									<p>Embracing Identity</p>
+									<p class="date">February 4, 2020</p>
+									<p>A mile east of where the 5 merges with the San Bernardino freeway is Duke's Sportsman Liquor store. Duke and Sunny, my middle aged parents from South Korea, owned the small liquor store in the city of Terrace for nearly a decade. Sitting on a stool behind the hanging rolls of scratchers, I watched my parents work. My dad, with his toes exposed in his velcro sandals, greeted customers while talking with the Budweiser courier about the day's shipment...</p>
+								</div>
+							</div>
 						</div>
-						<div class="col-4 col-12-small">
-							<span class="image fit"><img src="/images/Golf.JPG" alt="" /></span>
-						</div>
-					</div>
 
-					<!-- Sabes que Post -->
-					<hr class="major" />
-					<div class="row">
-						<div class="col-4 col-12-small">
-							<span class="image fit"><img src="/images/Korea.JPG" alt="" /></span>
+						<!-- Did you eat yet Post -->
+						<div class="blog-post" data-date="2020-02-05" data-popular="4">
+							<hr class="major" />
+							<div class="row">
+								<div class="col-8 col-12-small">
+									<h2><a href="/pages/blog/did-you-eat-yet.html">Did you eat yet?</a></h2>
+									<p>Agape(ἀγάπη) love</p>
+									<p class="date">February 5, 2020</p>
+									<p>"Why can't you be like white parents?" As a seventh grader who just spent the weekend at Jacob's house, I heard a constant flow of "I love you" and "I love you too" throughout the day. I bicycled back home just in time for my mom's signature spaghetti and meatballs, and I sat fiddling with my chopsticks until I asked, "Do you love me?" My mother stayed quiet until she said, "Don't ask me those kinds of questions"...</p>
+								</div>
+								<div class="col-4 col-12-small">
+									<span class="image fit"><img src="/images/Golf.JPG" alt="" /></span>
+								</div>
+							</div>
 						</div>
-						<div class="col-8 col-12-small">
-							<h2><a href="/pages/blog/sabes-que.html">¿Sabes que?</a></h2>
-							<p>Cultural Identity In Los Angeles</p>
-							<p class="date">February 6, 2020</p>
-							<p>My parents placed Korean culture at the top of the priority list for my siblings and me. We went to the cemetery several times a year to bow to our ancestors and pour rice wine around their tombstones. We celebrated the lunar new year with a morning full of incense and open doors to welcome ancestral spirits to feast on the food that my mom and grandma prepared over the span of several nights...</p>
-						</div>
-					</div>
 
-					<!-- Grandmother Post -->
-					<hr class="major" />
-					<div class="row">
-						<div class="col-8 col-12-small">
-							<h2><a href="/pages/blog/grandmother.html">Grandmother</a></h2>
-							<p>Unconditional Devotion</p>
-							<p class="date">February 10, 2020</p>
-							<p>There was no secret that I was my grandma's favorite. Somehow, we always managed to be by each other's side with her hand in mine. She made whatever food that my tiny soul desired including my favorite Korean dessert; sweet rice punch. It seemed as though she devoted much of her existence to my siblings and me(mostly me). In the mornings, we walked across the street into the neighboring cul de sac where we enjoyed the roses lined along the sidewalk...</p>
+						<!-- Sabes que Post -->
+						<div class="blog-post" data-date="2020-02-06" data-popular="2">
+							<hr class="major" />
+							<div class="row">
+								<div class="col-4 col-12-small">
+									<span class="image fit"><img src="/images/Korea.JPG" alt="" /></span>
+								</div>
+								<div class="col-8 col-12-small">
+									<h2><a href="/pages/blog/sabes-que.html">¿Sabes que?</a></h2>
+									<p>Cultural Identity In Los Angeles</p>
+									<p class="date">February 6, 2020</p>
+									<p>My parents placed Korean culture at the top of the priority list for my siblings and me. We went to the cemetery several times a year to bow to our ancestors and pour rice wine around their tombstones. We celebrated the lunar new year with a morning full of incense and open doors to welcome ancestral spirits to feast on the food that my mom and grandma prepared over the span of several nights...</p>
+								</div>
+							</div>
 						</div>
-						<div class="col-4 col-12-small">
-							<span class="image fit"><img src="/images/gma.jpg" alt="" /></span>
-						</div>
-					</div>
 
-					<!-- Magnae Post -->
-					<hr class="major" />
-					<div class="row">
-						<div class="col-4 col-12-small">
-							<span class="image fit"><img src="/images/magnae.JPG" alt="" /></span>
+						<!-- Grandmother Post -->
+						<div class="blog-post" data-date="2020-02-10" data-popular="5">
+							<hr class="major" />
+							<div class="row">
+								<div class="col-8 col-12-small">
+									<h2><a href="/pages/blog/grandmother.html">Grandmother</a></h2>
+									<p>Unconditional Devotion</p>
+									<p class="date">February 10, 2020</p>
+									<p>There was no secret that I was my grandma's favorite. Somehow, we always managed to be by each other's side with her hand in mine. She made whatever food that my tiny soul desired including my favorite Korean dessert; sweet rice punch. It seemed as though she devoted much of her existence to my siblings and me(mostly me). In the mornings, we walked across the street into the neighboring cul de sac where we enjoyed the roses lined along the sidewalk...</p>
+								</div>
+								<div class="col-4 col-12-small">
+									<span class="image fit"><img src="/images/gma.jpg" alt="" /></span>
+								</div>
+							</div>
 						</div>
-						<div class="col-8 col-12-small">
-							<h2><a href="/pages/blog/magnae.html">막내 (magnae)</a></h2>
-							<p>Cultural Identity In Los Angeles</p>
-							<p class="date">February 11, 2020</p>
-							<p>고구려(高句麗; Goguryeo) existed in the korean peninsula from the first to seventh century. In an overly patriotic fashion, my father named his kids after the dynasty. Ko(brother), Rea(sister), Narang(sister), and me. The name "Narang" is a combination of the words "Nara Sarang" which directly translates to "love the land(nation)". For most of my life, I grew up with Narang...</p>
-						</div>
-					</div>
 
-					<!-- Cans and Bottles Post -->
-					<hr class="major" />
-					<div class="row">
-						<div class="col-8 col-12-small">
-							<h2><a href="/pages/blog/cans-and-bottles.html">Cans and Bottles</a></h2>
-							<p>How much a dollar cost?</p>
-							<p class="date">February 23, 2020</p>
-							<p>My family always collected and recycled bottles. Visiting home from UCSD, I scrunched water bottles and packed them into my duffel bag since I did not have a car to go to a recycling center near campus. Once I got home, I drove my family's decade old Hyundai to pick up several bags that contained green soju bottles from my father's restaurant along with a basket full of bottles that piled up at my mother's house...</p>
+						<!-- Magnae Post -->
+						<div class="blog-post" data-date="2020-02-11" data-popular="6">
+							<hr class="major" />
+							<div class="row">
+								<div class="col-4 col-12-small">
+									<span class="image fit"><img src="/images/magnae.JPG" alt="" /></span>
+								</div>
+								<div class="col-8 col-12-small">
+									<h2><a href="/pages/blog/magnae.html">막내 (magnae)</a></h2>
+									<p>Cultural Identity In Los Angeles</p>
+									<p class="date">February 11, 2020</p>
+									<p>고구려(高句麗; Goguryeo) existed in the korean peninsula from the first to seventh century. In an overly patriotic fashion, my father named his kids after the dynasty. Ko(brother), Rea(sister), Narang(sister), and me. The name "Narang" is a combination of the words "Nara Sarang" which directly translates to "love the land(nation)". For most of my life, I grew up with Narang...</p>
+								</div>
+							</div>
 						</div>
-						<div class="col-4 col-12-small">
-							<span class="image fit"><img src="/images/ucsd.JPG" alt="" /></span>
-						</div>
-					</div>
 
-					<!-- Familiarity Post -->
-					<hr class="major" />
-					<div class="row">
-						<div class="col-8 col-12-small">
-							<h2><a href="/pages/blog/familiarity-in-the-unfamiliar.html">Familiarity in the unfamiliar</a></h2>
-							<p>Closer than we think</p>
-							<p class="date">August 12, 2024</p>
-							<p>"Finding familiarity in the unfamiliar" is a concept that is often discussed when people encounter new experiences, such as starting a new job or moving to a new place. For some, it is the ability to relate to their new surroundings and make it feel like home. For me, finding familiarity in the unfamiliar is all about connecting with people...</p>
+						<!-- Cans and Bottles Post -->
+						<div class="blog-post" data-date="2020-02-23" data-popular="7">
+							<hr class="major" />
+							<div class="row">
+								<div class="col-8 col-12-small">
+									<h2><a href="/pages/blog/cans-and-bottles.html">Cans and Bottles</a></h2>
+									<p>How much a dollar cost?</p>
+									<p class="date">February 23, 2020</p>
+									<p>My family always collected and recycled bottles. Visiting home from UCSD, I scrunched water bottles and packed them into my duffel bag since I did not have a car to go to a recycling center near campus. Once I got home, I drove my family's decade old Hyundai to pick up several bags that contained green soju bottles from my father's restaurant along with a basket full of bottles that piled up at my mother's house...</p>
+								</div>
+								<div class="col-4 col-12-small">
+									<span class="image fit"><img src="/images/ucsd.JPG" alt="" /></span>
+								</div>
+							</div>
 						</div>
-						<div class="col-4 col-12-small">
-							<span class="image fit"><img src="/images/motorcycle.JPG" alt="" /></span>
+
+						<!-- Familiarity Post -->
+						<div class="blog-post" data-date="2024-08-12" data-popular="8">
+							<hr class="major" />
+							<div class="row">
+								<div class="col-8 col-12-small">
+									<h2><a href="/pages/blog/familiarity-in-the-unfamiliar.html">Familiarity in the unfamiliar</a></h2>
+									<p>Closer than we think</p>
+									<p class="date">August 12, 2024</p>
+									<p>"Finding familiarity in the unfamiliar" is a concept that is often discussed when people encounter new experiences, such as starting a new job or moving to a new place. For some, it is the ability to relate to their new surroundings and make it feel like home. For me, finding familiarity in the unfamiliar is all about connecting with people...</p>
+								</div>
+								<div class="col-4 col-12-small">
+									<span class="image fit"><img src="/images/motorcycle.JPG" alt="" /></span>
+								</div>
+							</div>
 						</div>
 					</div>
 
@@ -232,6 +318,67 @@
 	<script src="/assets/js/breakpoints.min.js"></script>
 	<script src="/assets/js/util.js"></script>
 	<script src="/assets/js/main.js"></script>
+
+	<script>
+		// Function to sort blog posts
+		function sortPosts(sortBy, element) {
+			// Update active class and current sort text
+			document.querySelectorAll('.sort-options div').forEach(option => {
+				option.classList.remove('active');
+			});
+			element.classList.add('active');
+			document.getElementById('current-sort').textContent = element.textContent;
+			
+			// Close dropdown
+			document.querySelector('.sort-dropdown').classList.remove('active');
+
+			const posts = Array.from(document.getElementsByClassName('blog-post'));
+			const container = document.getElementById('blog-posts');
+
+			posts.sort((a, b) => {
+				if (sortBy === 'date') {
+					const dateA = new Date(a.getAttribute('data-date'));
+					const dateB = new Date(b.getAttribute('data-date'));
+					return dateB - dateA; // Sort by date descending
+				} else {
+					const popularityA = parseInt(a.getAttribute('data-popular'));
+					const popularityB = parseInt(b.getAttribute('data-popular'));
+					return popularityA - popularityB; // Sort by popularity ascending (1 is most popular)
+				}
+			});
+
+			// Clear container
+			while (container.firstChild) {
+				container.removeChild(container.firstChild);
+			}
+
+			// Add sorted posts back
+			posts.forEach(post => {
+				container.appendChild(post);
+				post.style.display = 'block';
+			});
+		}
+
+		// Toggle dropdown
+		document.addEventListener('DOMContentLoaded', function() {
+			const dropdown = document.querySelector('.sort-dropdown');
+			const button = document.querySelector('.sort-button');
+			
+			button.addEventListener('click', function(e) {
+				e.stopPropagation();
+				dropdown.classList.toggle('active');
+			});
+
+			// Close dropdown when clicking outside
+			document.addEventListener('click', function() {
+				dropdown.classList.remove('active');
+			});
+
+			// Sort by date on page load
+			const dateOption = document.querySelector('.sort-options div:first-child');
+			sortPosts('date', dateOption);
+		});
+	</script>
 
 </body>
 
