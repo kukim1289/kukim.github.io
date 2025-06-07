@@ -10,21 +10,21 @@ const menuItems: MenuItem[] = [
     title: 'Portfolio',
     href: '#',
     subItems: [
-      { title: 'Programming', href: '/pages/programming' },
-      { title: 'Biology', href: '/pages/biology' }
+      { title: 'Programming', href: '/programming' },
+      { title: 'Biology', href: '/biology' }
     ]
   },
   {
     title: 'Employment History',
     href: '#',
     subItems: [
-      { title: 'Promis Diagnostics', href: '/pages/promisdx' },
-      { title: 'Zymo Research Corp', href: '/pages/zymo' }
+      { title: 'Promis Diagnostics', href: '/promisdx' },
+      { title: 'Zymo Research Corp', href: '/zymo' }
     ]
   },
-  { title: 'Teaching', href: '/pages/teaching' },
-  { title: 'Blog', href: '/pages/blog' },
-  { title: 'Resume', href: '/Ku_Kim Resume_2022.pdf' }
+  { title: 'Teaching', href: '/teaching' },
+  { title: 'Blog', href: '/blog' },
+  { title: 'Resume', href: '/files/Ku_Kim_Resume_2022.pdf' }
 ];
 
 const Sidebar: React.FC = () => {
