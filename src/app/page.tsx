@@ -4,66 +4,77 @@ import PageLayout from "@/components/layout/PageLayout";
 
 export default function Home() {
   return (
-    <PageLayout title="Welcome">
-      <div className="image main">
-        <Image
-          src="/images/me2.jpeg"
-          alt="Ku Kim"
-          width={1000}
-          height={500}
-          style={{ objectFit: "cover" }}
-          priority
-        />
-      </div>
-
-      <section>
-        <h2>About Me</h2>
-        <p>
-          Hello! I'm Ku Kim, a professional with a diverse background spanning biology, programming,
-          and entrepreneurship. My journey has taken me from molecular diagnostics labs to web development,
-          always driven by curiosity and a desire to solve complex problems.
-        </p>
+    <PageLayout title="Homepage">
+      {/* Banner */}
+      <section id="banner">
+        <div className="content">
+          <header>
+            <h1>Hi, I'm Ku</h1>
+            <p>Masters in Software Engineering Student at UC Irvine</p>
+          </header>
+          <p>Welcome to my professional website portfolio! Explore my projects, educational background, and work history.</p>
+        </div>
+        <span className="image object">
+          <Image 
+            src="/images/Me.jpeg" 
+            alt="Ku Kim" 
+            width={500} 
+            height={500}
+            style={{ objectFit: 'cover' }}
+            priority
+          />
+        </span>
       </section>
 
-      <section className="features">
-        <article>
-          <h3>Programming</h3>
-          <p>
-            From developing web applications to creating automation tools, I combine technical expertise
-            with practical solutions. Check out my programming projects including BlakBlok, EZ Cloud System,
-            and more.
-          </p>
-          <Link href="/programming" className="button">View Projects</Link>
-        </article>
+      {/* Education Section */}
+      <section>
+        <header className="major">
+          <h2><span className="icon solid fa-graduation-cap"></span> Education</h2>
+        </header>
+        <div className="features">
+          <article>
+            <div className="content">
+              <h3>UC Irvine (2022-2024)</h3>
+              <h5>Software Engineering 4.0 GPA</h5>
+              <hr />
+              <h3>UC Berkeley (2018-2019)</h3>
+              <h5>Molecular and Cell Biology 3.62 GPA</h5>
+              <hr />
+              <h3>UC San Diego (2016-2018)</h3>
+              <h5>General Biology 3.87 GPA</h5>
+            </div>
+          </article>
+        </div>
+      </section>
 
-        <article>
-          <h3>Biology</h3>
-          <p>
-            My work in molecular diagnostics includes experience with COVID-19 testing, UTI panels, and
-            colorectal cancer assays. I've contributed to increasing testing capacity and improving
-            laboratory workflows.
-          </p>
-          <Link href="/biology" className="button">Learn More</Link>
-        </article>
+      {/* Experience Section */}
+      <section>
+        <header className="major">
+          <h2>Experience</h2>
+        </header>
+        <div className="posts">
+          <article>
+            <Link href="/promisdx" className="image">
+              <Image src="/images/promisdxlogo.jpg" alt="Promis Diagnostics" width={600} height={400} />
+            </Link>
+            <h3>Promis Diagnostics</h3>
+            <p>Experimental design and planning, data analysis, and documentation to satisfy CLIA and CAP requirements across several assays.</p>
+            <ul className="actions">
+              <li><Link href="/promisdx" className="button">More</Link></li>
+            </ul>
+          </article>
 
-        <article>
-          <h3>Teaching</h3>
-          <p>
-            I've had the privilege of tutoring students in STEM subjects at UC San Diego and working
-            with K-12 students at the Multicultural Institute. Teaching has been a rewarding way to
-            share knowledge and inspire others.
-          </p>
-          <Link href="/teaching" className="button">Teaching Experience</Link>
-        </article>
-
-        <article>
-          <h3>Blog</h3>
-          <p>
-            Through my writing, I share personal stories about identity, family, and finding meaning
-            in everyday experiences. Join me in exploring these narratives that shape who I am.
-          </p>
-          <Link href="/blog" className="button">Read Blog</Link>
-        </article>
+          <article>
+            <Link href="/zymo" className="image">
+              <Image src="/images/zymologo.jpeg" alt="Zymo Research" width={600} height={400} />
+            </Link>
+            <h3>Zymo Research Corp</h3>
+            <p>Human Saliva, Urine, and Lancet sample processing and marketing of purification products for researchers, physicians, and clinical labs.</p>
+            <ul className="actions">
+              <li><Link href="/zymo" className="button">More</Link></li>
+            </ul>
+          </article>
+        </div>
       </section>
     </PageLayout>
   );
