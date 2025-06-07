@@ -14,6 +14,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   color: #7f888f;
   background: #ffffff;
+  overflow-x: hidden;
 }
 
 /* Typography */
@@ -42,12 +43,15 @@ h3 {
   display: flex;
   width: 100%;
   min-height: 100vh;
+  position: relative;
+  transition: opacity 0.5s ease;
 }
 
 #main {
   flex: 1;
   padding: 0;
   background: #ffffff;
+  transition: transform 0.5s ease;
 }
 
 .inner {
@@ -84,12 +88,14 @@ h3 {
 
 #banner .image.object {
   flex: 1;
+  position: relative;
 }
 
 #banner .image.object img {
   width: 100%;
   height: auto;
   border-radius: 4px;
+  object-fit: cover;
 }
 
 /* Features */
@@ -123,7 +129,20 @@ h3 {
 
 .posts article .image {
   display: block;
+  position: relative;
   border-bottom: solid 1px rgba(210, 215, 217, 0.75);
+  overflow: hidden;
+}
+
+.posts article .image img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.posts article:hover .image img {
+  transform: scale(1.05);
 }
 
 .posts article .content {
@@ -136,10 +155,23 @@ h3 {
   background: #f5f6f7;
   border-left: solid 1px rgba(210, 215, 217, 0.75);
   padding: 2.5em;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.5s ease;
+  z-index: 10000;
+}
+
+#sidebar.active {
+  transform: translateX(0);
 }
 
 #menu ul {
   list-style: none;
+  padding-left: 0;
 }
 
 #menu > ul > li {
@@ -148,10 +180,135 @@ h3 {
   padding: 0.5em 0 0 0;
 }
 
-#menu > ul > li > a {
+#menu > ul > li > a,
+#menu > ul > li > span {
   color: #3d4449;
   text-decoration: none;
   font-weight: 600;
+  display: block;
+  cursor: pointer;
+}
+
+#menu > ul > li > ul {
+  display: none;
+  margin: 0.5em 0 1.5em 0;
+  padding-left: 1em;
+}
+
+#menu > ul > li > ul.active {
+  display: block;
+}
+
+#menu > ul > li > span.opener {
+  position: relative;
+}
+
+#menu > ul > li > span.opener::after {
+  content: "\\f078";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  right: 0;
+  transition: transform 0.2s ease;
+}
+
+#menu > ul > li > span.opener.active::after {
+  transform: rotate(180deg);
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+  display: none;
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  width: 2em;
+  height: 2em;
+  padding: 1em;
+  cursor: pointer;
+  z-index: 10001;
+  background: #f56a6a;
+  border-radius: 4px;
+}
+
+.hamburger-menu span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 4px 0;
+  background: #ffffff;
+  transition: 0.4s;
+}
+
+.hamburger-menu.is-active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger-menu.is-active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.is-active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Responsive */
+@media screen and (max-width: 1280px) {
+  .inner {
+    padding: 3em;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  #wrapper {
+    padding-top: 3em;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  #main {
+    transform: translateX(0);
+  }
+
+  #wrapper.is-menu-visible #main {
+    transform: translateX(-26em);
+  }
+
+  #banner {
+    flex-direction: column;
+  }
+
+  #banner .image.object {
+    margin-top: 2em;
+  }
+
+  #banner .image.object img {
+    max-height: 400px;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .inner {
+    padding: 2em;
+  }
+
+  h1 {
+    font-size: 2.5em;
+  }
+
+  h2 {
+    font-size: 1.75em;
+  }
+
+  #sidebar {
+    width: 100%;
+  }
+
+  #wrapper.is-menu-visible #main {
+    transform: translateX(-100%);
+  }
 }
 
 /* Buttons */
@@ -185,41 +342,4 @@ h3 {
 
 .icons a:hover {
   color: #f56a6a;
-}
-
-/* Responsive */
-@media screen and (max-width: 1280px) {
-  .inner {
-    padding: 3em;
-  }
-}
-
-@media screen and (max-width: 980px) {
-  #wrapper {
-    flex-direction: column;
-  }
-
-  #sidebar {
-    width: 100%;
-    border-left: none;
-    border-top: solid 1px rgba(210, 215, 217, 0.75);
-  }
-
-  #banner {
-    flex-direction: column;
-  }
-}
-
-@media screen and (max-width: 736px) {
-  .inner {
-    padding: 2em;
-  }
-
-  h1 {
-    font-size: 2.5em;
-  }
-
-  h2 {
-    font-size: 1.75em;
-  }
 }
