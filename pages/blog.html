@@ -69,6 +69,22 @@
 		.blog-post {
 			display: none;
 		}
+		@media screen and (max-width: 736px) {
+			.blog-post .row {
+				display: flex;
+				flex-direction: column;
+			}
+			.blog-post .row .col-4,
+			.blog-post .row .col-8 {
+				order: 2;
+			}
+			.blog-post .row .col-8 {
+				order: 1;
+			}
+			.blog-post .row .col-4 {
+				margin-top: 2em;
+			}
+		}
 	</style>
 </head>
 
@@ -129,14 +145,14 @@
 						<div class="blog-post" data-date="2020-02-04" data-popular="1">
 							<hr class="major" />
 							<div class="row">
-								<div class="col-4 col-12-small">
-									<span class="image fit"><img src="/images/Dad.JPG" alt="" /></span>
-								</div>
 								<div class="col-8 col-12-small">
 									<h2><a href="/pages/blog/liquor-sweat-bulletproof.html">Liquor, Sweat, and Bulletproof Glass</a></h2>
 									<p>Embracing Identity</p>
 									<p class="date">February 4, 2020</p>
 									<p>A mile east of where the 5 merges with the San Bernardino freeway is Duke's Sportsman Liquor store. Duke and Sunny, my middle aged parents from South Korea, owned the small liquor store in the city of Terrace for nearly a decade. Sitting on a stool behind the hanging rolls of scratchers, I watched my parents work. My dad, with his toes exposed in his velcro sandals, greeted customers while talking with the Budweiser courier about the day's shipment...</p>
+								</div>
+								<div class="col-4 col-12-small">
+									<span class="image fit"><img src="/images/Dad.JPG" alt="" /></span>
 								</div>
 							</div>
 						</div>
@@ -161,14 +177,14 @@
 						<div class="blog-post" data-date="2020-02-06" data-popular="2">
 							<hr class="major" />
 							<div class="row">
-								<div class="col-4 col-12-small">
-									<span class="image fit"><img src="/images/Korea.JPG" alt="" /></span>
-								</div>
 								<div class="col-8 col-12-small">
 									<h2><a href="/pages/blog/sabes-que.html">¿Sabes que?</a></h2>
 									<p>Cultural Identity In Los Angeles</p>
 									<p class="date">February 6, 2020</p>
 									<p>My parents placed Korean culture at the top of the priority list for my siblings and me. We went to the cemetery several times a year to bow to our ancestors and pour rice wine around their tombstones. We celebrated the lunar new year with a morning full of incense and open doors to welcome ancestral spirits to feast on the food that my mom and grandma prepared over the span of several nights...</p>
+								</div>
+								<div class="col-4 col-12-small">
+									<span class="image fit"><img src="/images/Korea.JPG" alt="" /></span>
 								</div>
 							</div>
 						</div>
@@ -193,14 +209,14 @@
 						<div class="blog-post" data-date="2020-02-11" data-popular="6">
 							<hr class="major" />
 							<div class="row">
-								<div class="col-4 col-12-small">
-									<span class="image fit"><img src="/images/magnae.JPG" alt="" /></span>
-								</div>
 								<div class="col-8 col-12-small">
 									<h2><a href="/pages/blog/magnae.html">막내 (magnae)</a></h2>
 									<p>Cultural Identity In Los Angeles</p>
 									<p class="date">February 11, 2020</p>
 									<p>고구려(高句麗; Goguryeo) existed in the korean peninsula from the first to seventh century. In an overly patriotic fashion, my father named his kids after the dynasty. Ko(brother), Rea(sister), Narang(sister), and me. The name "Narang" is a combination of the words "Nara Sarang" which directly translates to "love the land(nation)". For most of my life, I grew up with Narang...</p>
+								</div>
+								<div class="col-4 col-12-small">
+									<span class="image fit"><img src="/images/magnae.JPG" alt="" /></span>
 								</div>
 							</div>
 						</div>
